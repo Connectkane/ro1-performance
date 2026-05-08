@@ -631,7 +631,19 @@ section { border-bottom: 1px solid var(--hair); }
   .sec-lede { font-size: 14px; max-width: 100%; margin-top: 12px; line-height: 1.6; }
 
   /* SCIENCE */
-  .diagram { display: none !important; }
+  /* DIAGRAM — compact single-column */
+  .diagram {
+    height: 220px;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    padding: 16px;
+    margin-bottom: 0;
+  }
+  .dxlabel { display: none; }
+  .diagram-mid { height: 100%; width: 100%; grid-column: 1; }
+  .diagram-circle { width: 150px; height: 150px; }
+  .diagram-circle::before { inset: 18px; }
+  .diagram-circle::after { inset: 44px; }
   .science-points { margin-top: 0; grid-template-columns: 1fr; gap: 0; }
   .science-point { padding: 18px 0; border-bottom: 1px solid var(--hair-2); }
   .science-point:last-child { border-bottom: none; padding-bottom: 0; }
