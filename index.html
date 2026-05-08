@@ -596,137 +596,135 @@ section { border-bottom: 1px solid var(--hair); }
 /* ---- MOBILE ≤ 560px ---- */
 @media (max-width: 560px) {
 
-  /* NAV — hide tag text, shrink CTA */
+  /* NAV */
   .brand .tag { display: none; }
-  .nav-cta { padding: 8px 12px; font-size: 10px; letter-spacing: 0.08em; }
+  .nav-cta { padding: 8px 12px; font-size: 10px; }
   .nav-row { gap: 12px; }
 
-  /* HERO — compact heights */
+  /* HERO */
   .hero { min-height: auto; }
-  .hero-l { padding: 32px 0; }
-  .hero-r { padding: 24px 0; }
-  .bottle-wrap { min-height: 300px; }
-  .bottle-wrap img { max-height: 300px; }
-  .hero-pos { font-size: 14px; margin-bottom: 24px; }
+  .hero-l { padding: 40px 0 32px; }
+  .hero-r { padding: 0 0 40px; border-top: 1px solid var(--hair); }
+  .hero-eyebrow { font-size: 10px; margin-bottom: 16px; }
+  .hero-h1 { font-size: clamp(38px, 10.5vw, 54px); margin-bottom: 16px; }
+  .hero-lede { font-size: 15px; line-height: 1.6; margin-bottom: 24px; max-width: 100%; }
   .cta-row { flex-direction: column; align-items: stretch; }
-  .cta-row .btn { justify-content: center; }
+  .cta-row .btn { justify-content: center; font-size: 12px; padding: 13px 18px; }
+  .hero-trust { gap: 12px; margin-top: 22px; font-size: 9px; }
+  .bottle-wrap { min-height: 260px; }
+  .bottle-wrap img { max-height: 260px; }
 
-  /* SECTIONS — tighter padding */
-  .sec { padding: 48px 0; }
+  /* SECTIONS */
+  .sec { padding: 44px 0; }
+  .sec-num { font-size: 10px; margin-bottom: 12px; }
+  .sec-title { font-size: clamp(22px, 6.5vw, 30px); letter-spacing: -0.02em; }
+  .sec-lede { font-size: 13px; max-width: 100%; margin-top: 10px; line-height: 1.55; }
 
-  /* SEC-LEDE — don't cap width on mobile */
-  .sec-lede { max-width: 100%; }
+  /* PROTOCOL TIMELINE */
+  .proto-intro { margin-bottom: 28px; }
+  .proto-intro h2 { font-size: clamp(26px, 7vw, 38px); font-weight: 600; letter-spacing: -0.02em; margin-bottom: 12px; }
+  .proto-intro p { font-size: 14px; }
+  .proto-specs { grid-template-columns: 1fr; }
+  .proto-spec { border-right: none; border-bottom: 1px solid var(--hair); padding: 14px 20px; }
+  .proto-spec:last-child { border-bottom: none; }
+  .proto-spec-lbl { margin-bottom: 4px; }
+  .proto-spec-val { font-size: 14px; }
+  .proto-entry { grid-template-columns: 60px 1fr; gap: 12px; padding: 24px 0; }
+  .proto-time { font-size: 10px; }
+  .proto-title { font-size: 16px; margin-bottom: 8px; }
+  .proto-desc { font-size: 13px; line-height: 1.55; margin-bottom: 12px; }
+  .proto-tag { font-size: 10px; padding: 4px 9px; }
+  .proto-phases { grid-template-columns: 1fr 1fr; }
+  .proto-phase:nth-child(2) { border-right: none; }
+  .proto-phase:nth-child(3), .proto-phase:nth-child(4) { border-top: 1px solid var(--hair); }
+  .proto-phase { padding: 16px; }
+  .proto-phase-lbl { font-size: 9px; }
+  .proto-phase-weeks { font-size: 11px; }
 
-  /* KV ROWS — stack label above value */
-  .kv {
-    grid-template-columns: 1fr;
-    gap: 3px;
-    padding: 12px 16px;
-  }
+  /* KV ROWS */
+  .kv { grid-template-columns: 1fr; gap: 2px; padding: 10px 16px; }
   .kv .k { font-size: 10px; }
   .kv .v { font-size: 13px; }
-  .panel-head { padding: 12px 16px; flex-wrap: wrap; gap: 6px; }
+  .panel-head { padding: 10px 16px; flex-wrap: wrap; gap: 6px; }
   .panel-head .ttl { font-size: 10px; }
 
-  /* COMPOSITION — hide Function column, 3-col grid */
+  /* COMPOSITION */
+  .cap-hd { padding: 12px 16px; gap: 8px; }
+  .cap-hd-num { font-size: 13px; }
+  .cap-hd-type { font-size: 10px; padding: 2px 8px; }
+  .cap-hd-focus { display: none; }
   .comp-head,
-  .comp-row { grid-template-columns: 28px 1fr auto; padding: 0 16px; }
+  .comp-row { grid-template-columns: 24px 1fr auto; padding: 0 16px; }
   .comp-head span:nth-child(3),
   .comp-row .fn { display: none; }
-  .comp-row .ing { font-size: 14px; }
-  .comp-row .dose { font-size: 13px; }
-  .comp-row { padding-top: 14px; padding-bottom: 14px; }
-  .comp-microcopy { flex-direction: column; gap: 4px; padding: 12px 16px; }
+  .comp-row .ing { font-size: 13px; }
+  .ing-sub { font-size: 9px; }
+  .comp-row .dose { font-size: 12px; }
+  .comp-row { padding-top: 12px; padding-bottom: 12px; }
+  .comp-microcopy { flex-direction: column; gap: 3px; padding: 10px 16px; font-size: 10px; }
 
-  /* DIAGRAM — restructure for mobile, prevent overflow */
-  .diagram {
-    height: auto;
-    overflow: hidden;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto;
-    padding: 20px 16px 16px;
-    justify-items: center;
-    gap: 0;
-  }
-  /* Hide side labels from the grid — replaced by row below */
+  /* DIAGRAM */
+  .diagram { height: auto; overflow: hidden; grid-template-columns: 1fr; grid-template-rows: auto auto; padding: 20px 16px 16px; justify-items: center; gap: 0; }
   .dxlabel { display: none; }
-  .diagram-mid {
-    height: 220px;
-    width: 100%;
-    grid-column: 1;
-  }
-  .diagram-circle { width: 160px; height: 160px; }
-  /* Label row injected below circle */
-  .diagram::after {
-    content: "COGNITIVE · VASCULAR";
-    display: block;
-    grid-column: 1;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    color: var(--slate-2);
-    text-transform: uppercase;
-    text-align: center;
-    padding-top: 12px;
-    border-top: 1px solid var(--hair-2);
-    margin-top: 8px;
-    width: 100%;
-  }
+  .diagram-mid { height: 200px; width: 100%; grid-column: 1; }
+  .diagram-circle { width: 140px; height: 140px; }
+  .diagram::after { content: "COGNITIVE · VASCULAR"; display: block; grid-column: 1; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: var(--slate-2); text-transform: uppercase; text-align: center; padding-top: 12px; border-top: 1px solid var(--hair-2); margin-top: 8px; width: 100%; }
 
   /* MECHANISM */
-  .mech-cell h4 { font-size: 18px; }
+  .mech-cell { padding: 24px 0; }
+  .mech-cell h4 { font-size: 17px; }
+  .mech-cell p { font-size: 13px; }
 
-  /* PROOF GRID — single column */
+  /* PROOF */
   .proof-grid { grid-template-columns: 1fr; }
-  .proof-cell { border-right: none; border-bottom: 1px solid var(--hair); }
+  .proof-cell { border-right: none; border-bottom: 1px solid var(--hair); padding: 22px 0; }
   .proof-cell:last-child { border-bottom: none; }
+  .proof-cell h5 { font-size: 15px; }
+  .proof-cell p { font-size: 13px; }
 
-  /* VS / DIFF */
+  /* VS */
   .vs-col { padding: 20px 16px; }
-  .vs-row { font-size: 13px; }
+  .vs-row { font-size: 13px; padding: 10px 0; }
 
   /* DEPLOY */
-  .deploy-l { padding: 40px 0; }
-  .deploy-r { padding: 32px 0; }
-  .price-big { font-size: 48px; }
-  .deploy-meta {
-    grid-template-columns: repeat(3, auto);
-    justify-content: space-between;
-    gap: 6px;
-    font-size: 10px;
-    letter-spacing: 0.03em;
-  }
-  .deploy-meta div { padding: 8px 0; white-space: nowrap; }
-  .spec-row { gap: 20px; }
+  .deploy-l { padding: 36px 0; }
+  .deploy-r { padding: 28px 0; }
+  .price-big { font-size: 44px; letter-spacing: -0.02em; }
+  .plan { padding: 14px 16px; }
+  .pn { font-size: 13px; }
+  .pp { font-size: 14px; }
+  .deploy-meta { grid-template-columns: 1fr; gap: 0; font-size: 10px; letter-spacing: 0.06em; }
+  .deploy-meta div { padding: 8px 0; border-bottom: 1px solid var(--hair-2); }
+  .deploy-meta div:last-child { border-bottom: none; }
+  .spec-row { gap: 16px; flex-wrap: wrap; }
 
   /* FOOTER */
-  .footer-pillars { grid-template-columns: 1fr; }
-  .fp { border-right: none; border-bottom: 1px solid var(--hair); padding: 16px 20px; }
-  .fp:last-child { border-bottom: none; }
-  .foot { padding: 28px 0 40px; gap: 16px; }
+  .footer-pillars { grid-template-columns: 1fr 1fr; }
+  .fp { padding: 16px; }
+  .foot { padding: 24px 0 36px; gap: 14px; }
 
-  /* MODAL — bottom sheet */
+  /* MODAL */
   .modal-bg { align-items: flex-end; padding: 0; }
-  .modal {
-    border-radius: 12px 12px 0 0;
-    max-width: 100%;
-    max-height: 90vh;
-    overflow-y: auto;
-  }
+  .modal { border-radius: 12px 12px 0 0; max-width: 100%; max-height: 90vh; overflow-y: auto; }
   .modal-body { padding: 20px 16px; }
   .modal-foot { padding: 14px 16px; }
-  .modal h3 { font-size: 19px; }
+  .modal h3 { font-size: 18px; }
+  .modal .plan { padding: 12px 14px; }
 }
 
-/* ---- MOBILE ≤ 380px (very small phones) ---- */
+/* ---- MOBILE ≤ 380px ---- */
 @media (max-width: 380px) {
+  .hero-h1 { font-size: 34px; }
+  .hero-lede { font-size: 14px; }
+  .bottle-wrap { min-height: 220px; }
+  .bottle-wrap img { max-height: 220px; }
+  .sec-title { font-size: 22px; }
+  .proto-intro h2 { font-size: 26px; }
+  .proto-entry { grid-template-columns: 1fr; gap: 4px; padding: 20px 0; }
+  .price-big { font-size: 38px; }
+  .comp-row .ing { font-size: 12px; }
+  .comp-row .dose { font-size: 11px; }
   .brand img { height: 18px !important; }
-  .hero-logo { max-width: 260px; }
-  .bottle-wrap { min-height: 240px; }
-  .bottle-wrap img { max-height: 240px; }
-  .sec-title { font-size: 26px; }
-  .price-big { font-size: 40px; }
-  .comp-row .ing { font-size: 13px; }
 }
 
 /* ---- Protocol Timeline ---- */
