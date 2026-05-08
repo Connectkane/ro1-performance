@@ -110,30 +110,37 @@ hr { border: none; border-top: 1px solid var(--hair); margin: 0; }
   .hero-r { padding: 40px 0; min-height: 520px; }
 }
 
-.hero-sub {
+.hero-stack { max-width: 540px; }
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 11px; letter-spacing: 0.14em; color: var(--slate-2);
-  text-transform: uppercase; margin-bottom: 20px;
-  font-weight: 400;
+  font-size: 11px; letter-spacing: 0.16em;
+  color: var(--slate-2); text-transform: uppercase;
+  margin-bottom: 28px;
 }
-.hero-hl {
+.hero-eyebrow .dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 4px rgba(76,124,255,0.14);
+}
+.hero-h1 {
   font-size: clamp(54px, 6.4vw, 92px);
   font-weight: 500; letter-spacing: -0.035em; line-height: 0.96;
-  margin-bottom: 26px;
+  margin-bottom: 26px; text-wrap: balance;
 }
-.hero-pos {
-  font-size: 15px; line-height: 1.65; color: var(--slate-2);
-  max-width: 420px; margin-bottom: 32px;
+.hero-h1 .accent { color: var(--accent); }
+.hero-lede {
+  font-size: 17px; line-height: 1.55; color: var(--slate-2);
+  max-width: 460px; margin-bottom: 36px; text-wrap: pretty;
 }
-.trust-row {
-  display: flex; gap: 28px; flex-wrap: wrap;
-  margin-top: 36px; padding-top: 28px;
-  border-top: 1px solid var(--hair);
-  font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+.hero-trust {
+  display: flex; flex-wrap: wrap; gap: 22px; margin-top: 28px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
   color: var(--slate-2);
 }
-.trust-row span { display: flex; align-items: center; gap: 7px; }
-.trust-row .chk { color: var(--status); font-size: 12px; }
+.hero-trust span { display: flex; align-items: center; gap: 8px; }
+.hero-trust .tk { color: var(--status); }
 
 .cta-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
 .btn {
@@ -1314,25 +1321,27 @@ function Hero({ onCheckout }) {
     <section>
       <div className="page hero">
         <div className="hero-l">
-          <div>
-            <div className="hero-sub">● &nbsp;RO-1 · PERFORMANCE SYSTEMS_</div>
-            <h1 className="hero-hl">
-              You at 27.<br/><span className="accent">Again.</span>
+          <div className="hero-stack">
+            <div className="hero-eyebrow">
+              <span className="dot"></span>
+              <span>RO-1 · PERFORMANCE SYSTEMS</span>
+            </div>
+            <h1 className="hero-h1">
+              Sharper mind.<br/><span className="accent">Stronger flow.</span>
             </h1>
-            <p className="hero-pos">
-              You're not broken. You're running on fumes — stress, sleep debt, and a body that stopped keeping up. RO-1 is a clinically dosed, fully transparent formula built to restore what quietly slipped — drive, energy, and the confidence you stopped thinking about.
+            <p className="hero-lede">
+              A vascular module engineered to upgrade output and circulatory function — clinically dosed, transparently labeled. See results in one month of consistent use!
             </p>
             <div className="cta-row">
               <button className="btn btn-primary" onClick={onCheckout}>
-                Start RO-1 <span className="arrow">→</span>
+                Deploy RO-1 — $78 <span className="arrow">→</span>
               </button>
-              <a href="#composition" className="btn btn-secondary">View formula</a>
             </div>
-          </div>
-          <div className="trust-row">
-            <span><span className="chk">✓</span>Every dose published</span>
-            <span><span className="chk">✓</span>Third-party tested</span>
-            <span><span className="chk">✓</span>30-day guarantee</span>
+            <div className="hero-trust">
+              <span><span className="tk">✓</span> Third-party tested</span>
+              <span><span className="tk">✓</span> 30-day guarantee</span>
+              <span><span className="tk">✓</span> Free shipping $75+</span>
+            </div>
           </div>
         </div>
         <div className="hero-r">
