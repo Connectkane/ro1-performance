@@ -198,7 +198,7 @@ section { border-bottom: 1px solid var(--hair); }
 }
 @media (max-width: 880px) {
   .sec { padding: 56px 0; }
-  .sec-grid { grid-template-columns: 1fr; gap: 32px; }
+  .sec-grid { grid-template-columns: 1fr; gap: 24px; }
 }
 .sec-num {
   font-family: 'JetBrains Mono', monospace;
@@ -663,12 +663,13 @@ section { border-bottom: 1px solid var(--hair); }
   .comp-row { padding-top: 12px; padding-bottom: 12px; }
   .comp-microcopy { flex-direction: column; gap: 3px; padding: 10px 16px; font-size: 10px; }
 
-  /* DIAGRAM */
-  .diagram { height: auto; overflow: hidden; grid-template-columns: 1fr; grid-template-rows: auto auto; padding: 20px 16px 16px; justify-items: center; gap: 0; }
-  .dxlabel { display: none; }
-  .diagram-mid { height: 200px; width: 100%; grid-column: 1; }
-  .diagram-circle { width: 140px; height: 140px; }
-  .diagram::after { content: "COGNITIVE · VASCULAR"; display: block; grid-column: 1; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: var(--slate-2); text-transform: uppercase; text-align: center; padding-top: 12px; border-top: 1px solid var(--hair-2); margin-top: 8px; width: 100%; }
+  /* DIAGRAM — hide entirely on mobile */
+  .diagram { display: none; }
+  .science-points { margin-top: 0; grid-template-columns: 1fr; gap: 20px; }
+  .science-point { padding: 16px 0; border-bottom: 1px solid var(--hair-2); }
+  .science-point:last-child { border-bottom: none; }
+  .science-point .ph { font-size: 11px; margin-bottom: 6px; }
+  .science-point p { font-size: 14px; line-height: 1.55; }
 
   /* MECHANISM */
   .mech-cell { padding: 24px 0; }
