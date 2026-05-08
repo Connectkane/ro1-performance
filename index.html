@@ -719,6 +719,60 @@ section { border-bottom: 1px solid var(--hair); }
   .price-big { font-size: 40px; }
   .comp-row .ing { font-size: 13px; }
 }
+
+/* ---- Protocol Timeline ---- */
+.proto-intro { text-align: center; margin-bottom: 48px; }
+.proto-intro h2 { font-size: clamp(32px, 5vw, 54px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.05; margin-bottom: 18px; }
+.proto-intro p { font-size: 15px; color: var(--slate-2); max-width: 500px; margin: 0 auto; line-height: 1.6; }
+
+.proto-specs {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  border: 1px solid var(--hair); border-radius: 4px;
+  overflow: hidden; background: #fff; margin-bottom: 0;
+}
+.proto-spec { padding: 24px 28px; border-right: 1px solid var(--hair); }
+.proto-spec:last-child { border-right: none; }
+.proto-spec-lbl { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--slate-2); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
+.proto-spec-val { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; }
+
+.proto-entry {
+  display: grid; grid-template-columns: 120px 1fr;
+  gap: 40px; padding: 40px 0;
+  border-bottom: 1px solid var(--hair);
+  align-items: start;
+}
+.proto-time { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; padding-top: 5px; }
+.proto-title { font-size: 20px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 12px; line-height: 1.2; }
+.proto-desc { font-size: 14px; color: var(--slate-2); line-height: 1.65; margin-bottom: 18px; }
+.proto-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.proto-tag { font-family: 'JetBrains Mono', monospace; font-size: 11px; border: 1px solid var(--hair); border-radius: 2px; padding: 5px 12px; color: var(--ink); letter-spacing: 0.02em; }
+.proto-tag-val { color: var(--accent); margin-left: 4px; }
+
+.proto-phases {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border: 1px solid var(--hair); border-top: none;
+  overflow: hidden; margin-bottom: 0;
+}
+.proto-phase { padding: 20px 24px; border-right: 1px solid var(--hair); }
+.proto-phase:last-child { border-right: none; }
+.proto-phase-bar { height: 2px; background: var(--accent); margin-bottom: 14px; border-radius: 1px; }
+.proto-phase-lbl { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; }
+.proto-phase-weeks { font-size: 12px; color: var(--slate-2); }
+
+@media (max-width: 720px) {
+  .proto-specs { grid-template-columns: 1fr; }
+  .proto-spec { border-right: none; border-bottom: 1px solid var(--hair); padding: 18px 20px; }
+  .proto-spec:last-child { border-bottom: none; }
+  .proto-entry { grid-template-columns: 72px 1fr; gap: 16px; padding: 28px 0; }
+  .proto-phases { grid-template-columns: 1fr 1fr; }
+  .proto-phase:nth-child(2) { border-right: none; }
+  .proto-phase:nth-child(3), .proto-phase:nth-child(4) { border-top: 1px solid var(--hair); }
+}
+@media (max-width: 480px) {
+  .proto-entry { grid-template-columns: 1fr; gap: 6px; padding: 24px 0; }
+  .proto-time { padding-top: 0; }
+  .proto-phases { grid-template-columns: 1fr 1fr; }
+}
 </style>
 </head>
 <body>
@@ -1348,35 +1402,83 @@ function ScienceSection() {
 
 // --- PROTOCOL ---
 function ProtocolSection() {
+  const timeline = [
+    {
+      time: 'DAY 1',
+      title: 'Your protocol starts today.',
+      desc: "No dramatic changes yet — that's expected. Shoden® ashwagandha and Pycnogenol® begin building vascular support and modulating cortisol. The loading phase is in progress. Take at the same time each day — consistency is the mechanism.",
+      tags: [{ l: 'Cortisol baseline', v: 'SET' }, { l: 'NO precursors', v: 'LOADING' }]
+    },
+    {
+      time: 'WEEK 1–2',
+      title: 'Loading phase in progress.',
+      desc: 'Shoden® ashwagandha begins modulating your cortisol response — clinical trials show a 14.5% reduction in cortisol within 14 days. Some people notice improved sleep quality and slightly reduced end-of-day stress.',
+      tags: [{ l: 'Cortisol', v: '-14.5%' }, { l: 'Sleep quality', v: '↑ EARLY' }, { l: 'Tongkat Ali', v: 'ACCUMULATING' }]
+    },
+    {
+      time: 'WEEK 3–4',
+      title: 'Most people begin noticing changes.',
+      desc: 'Stress resilience and energy consistency are the first signals. Tongkat Ali drives free testosterone up by reducing SHBG — studies show a 37% increase in free testosterone by week 4. Beetroot-derived nitrates maintain sustained NO levels.',
+      tags: [{ l: 'Free testosterone', v: '+37%' }, { l: 'Stress resilience', v: '↑ NOTABLE' }, { l: 'Energy', v: 'STABILISING' }]
+    },
+    {
+      time: 'WEEK 6–8',
+      title: 'The compounding effect.',
+      desc: "This is the assessment window. Pycnogenol® has been activating eNOS for 6+ weeks — clinical data shows a 32% improvement in endothelial function. Icarin's PDE5 inhibition preserves NO signalling for stronger, more reliable vascular response.",
+      tags: [{ l: 'Endothelial fn', v: '+32%' }, { l: 'Vascular tone', v: '↑ COMPOUNDING' }, { l: 'Libido', v: '↑ NOTICEABLE' }]
+    },
+    {
+      time: 'WEEK 10–12',
+      title: 'Full system activation.',
+      desc: 'Primavie® Shilajit reaches peak mitochondrial effect — studies report a 45% increase in total testosterone over 90 days. Saffron extract maintains psychological arousal and mood stability. This is where consistency pays off.',
+      tags: [{ l: 'Total testosterone', v: '+45%' }, { l: 'Mitochondrial ATP', v: '+27%' }, { l: 'Overall drive', v: '████' }]
+    }
+  ];
+  const phases = [
+    { label: 'LOADING', weeks: 'Week 1–2' },
+    { label: 'BUILDING', weeks: 'Week 3–4' },
+    { label: 'COMPOUNDING', weeks: 'Week 6–8' },
+    { label: 'FULL ACTIVATION', weeks: 'Week 10–12' }
+  ];
   return (
     <section id="protocol">
-      <div className="page sec">
-        <div className="sec-grid">
-          <div>
-            <div className="sec-num mono">
-              <span>02</span><span className="lbl">The Protocol</span>
-            </div>
-            <h2 className="sec-title">
-              Precision by design.<br/>Absorption <span className="accent">by protocol.</span>
-            </h2>
-            <p className="sec-lede">
-              Our delayed-release intestinal protocol ensures optimal bioavailability and absorption efficiency. Treated as a system, not a habit.
-            </p>
+      <div className="page sec" style={{paddingBottom: 0}}>
+        <div className="proto-intro">
+          <div className="sec-num mono" style={{justifyContent:'center', marginBottom:16}}>
+            <span>02</span><span className="lbl">The Protocol</span>
           </div>
-          <div className="panel">
-            <div className="panel-head">
-              <span className="ttl">SYSTEM CLASSIFICATION: MALE PERFORMANCE MODULE</span>
-              <span className="ver">v1.0</span>
+          <h2>This isn't a pill.<br/>It's a <strong>designed system.</strong></h2>
+          <p>Protocols require consistency. Results compound over time — not overnight.<br/>Here's exactly what to expect and when.</p>
+        </div>
+        <div className="proto-specs">
+          <div className="proto-spec"><div className="proto-spec-lbl">DELIVERY</div><div className="proto-spec-val">2 CAPSULES DAILY</div></div>
+          <div className="proto-spec"><div className="proto-spec-lbl">PROTOCOL CYCLE</div><div className="proto-spec-val">30-DAY SUPPLY</div></div>
+          <div className="proto-spec"><div className="proto-spec-lbl">ASSESSMENT WINDOW</div><div className="proto-spec-val">90-DAY PROTOCOL</div></div>
+        </div>
+      </div>
+      <div className="page">
+        {timeline.map((e, i) => (
+          <div className="proto-entry" key={i}>
+            <div className="proto-time">{e.time}</div>
+            <div>
+              <div className="proto-title">{e.title}</div>
+              <p className="proto-desc">{e.desc}</p>
+              <div className="proto-tags">
+                {e.tags.map((t, j) => (
+                  <span className="proto-tag" key={j}>{t.l}<span className="proto-tag-val">{t.v}</span></span>
+                ))}
+              </div>
             </div>
-            <div className="kv"><span className="k">Protocol</span><span className="v">DELAYED-RELEASE</span></div>
-            <div className="kv"><span className="k">Deployment</span><span className="v">INTESTINAL</span></div>
-            <div className="kv"><span className="k">Supply Format</span><span className="v">CAPSULE</span></div>
-            <div className="kv"><span className="k">Batch ID</span><span className="v">NX-2405-01</span></div>
-            <div className="kv"><span className="k">Capsule Count</span><span className="v">60</span></div>
-            <div className="kv"><span className="k">Dosage</span><span className="v">2 / MORNING</span></div>
-            <div className="kv"><span className="k">Cycle</span><span className="v">30-DAY ACTIVATION</span></div>
-            <div className="kv"><span className="k">Dietary supplement</span><span className="v">60 CAPSULES</span></div>
           </div>
+        ))}
+        <div className="proto-phases">
+          {phases.map((p, i) => (
+            <div className="proto-phase" key={i}>
+              <div className="proto-phase-bar"></div>
+              <div className="proto-phase-lbl">{p.label}</div>
+              <div className="proto-phase-weeks">{p.weeks}</div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
