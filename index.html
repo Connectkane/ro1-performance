@@ -110,28 +110,30 @@ hr { border: none; border-top: 1px solid var(--hair); margin: 0; }
   .hero-r { padding: 40px 0; min-height: 520px; }
 }
 
-.hero-logo {
-  display: block;
-  width: 100%; max-width: 520px; height: auto;
-  margin-bottom: 6px;
-}
 .hero-sub {
-  font-size: 14px; letter-spacing: 0.18em; color: var(--ink);
-  text-transform: uppercase; margin-bottom: 28px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: 0.14em; color: var(--slate-2);
+  text-transform: uppercase; margin-bottom: 20px;
   font-weight: 400;
 }
-.hero-mod {
-  font-weight: 500; font-size: 16px; margin-bottom: 6px;
-}
-.hero-unit {
-  font-family: 'JetBrains Mono', monospace; font-size: 12px;
-  color: var(--accent); letter-spacing: 0.06em;
-  margin-bottom: 18px;
+.hero-hl {
+  font-size: clamp(56px, 8vw, 96px);
+  font-weight: 700; letter-spacing: -0.04em; line-height: 1.0;
+  margin-bottom: 28px;
 }
 .hero-pos {
-  font-size: 15px; line-height: 1.55; color: var(--slate-2);
+  font-size: 15px; line-height: 1.65; color: var(--slate-2);
   max-width: 420px; margin-bottom: 32px;
 }
+.trust-row {
+  display: flex; gap: 28px; flex-wrap: wrap;
+  margin-top: 36px; padding-top: 28px;
+  border-top: 1px solid var(--hair);
+  font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--slate-2);
+}
+.trust-row span { display: flex; align-items: center; gap: 7px; }
+.trust-row .chk { color: var(--status); font-size: 12px; }
 
 .cta-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
 .btn {
@@ -1313,27 +1315,24 @@ function Hero({ onCheckout }) {
       <div className="page hero">
         <div className="hero-l">
           <div>
-            <img src={window.__resources.logo} alt="RO-1" className="hero-logo" />
-            <div className="hero-sub">PERFORMANCE&nbsp;SYSTEMS_</div>
-            <div className="hero-mod">Cognitive &amp; Vascular Module</div>
-            <div className="hero-unit mono">[UNIT: NOX-2405-01]</div>
+            <div className="hero-sub">● &nbsp;RO-1 · PERFORMANCE SYSTEMS_</div>
+            <h1 className="hero-hl">
+              You at 27.<br/><span className="accent">Again.</span>
+            </h1>
             <p className="hero-pos">
-              RO-1 is a cognitive &amp; vascular module engineered to upgrade mental output and circulatory function through synergistic nutrient signaling.
+              You're not broken. You're running on fumes — stress, sleep debt, and a body that stopped keeping up. RO-1 is a clinically dosed, fully transparent formula built to restore what quietly slipped — drive, energy, and the confidence you stopped thinking about.
             </p>
             <div className="cta-row">
               <button className="btn btn-primary" onClick={onCheckout}>
-                Deploy now <span className="arrow">→</span>
+                Start RO-1 <span className="arrow">→</span>
               </button>
-              <a href="#composition" className="btn btn-secondary">View composition</a>
+              <a href="#composition" className="btn btn-secondary">View formula</a>
             </div>
           </div>
-          <div className="pillars">
-            {pillars.map((p, i) => (
-              <div className="pillar" key={i}>
-                <div className="ico">{p.ic}</div>
-                <div className="lbl">{p.l}</div>
-              </div>
-            ))}
+          <div className="trust-row">
+            <span><span className="chk">✓</span>Every dose published</span>
+            <span><span className="chk">✓</span>Third-party tested</span>
+            <span><span className="chk">✓</span>30-day guarantee</span>
           </div>
         </div>
         <div className="hero-r">
