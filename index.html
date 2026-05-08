@@ -1334,13 +1334,13 @@ function Hero({ onCheckout }) {
             </p>
             <div className="cta-row">
               <button className="btn btn-primary" onClick={onCheckout}>
-                Deploy RO-1 — $78 <span className="arrow">→</span>
+                Start RO-1 — ₹1,799/mo <span className="arrow">→</span>
               </button>
             </div>
             <div className="hero-trust">
               <span><span className="tk">✓</span> Third-party tested</span>
               <span><span className="tk">✓</span> 30-day guarantee</span>
-              <span><span className="tk">✓</span> Free shipping $75+</span>
+              <span><span className="tk">✓</span> Free shipping ₹4K+</span>
             </div>
           </div>
         </div>
@@ -1747,9 +1747,9 @@ function DeploySection({ onCheckout }) {
         <div className="deploy-r">
           <div className="price-card">
             <div className="ph"><span>RO-1 · 60 capsules</span><span style={{color:'var(--status)'}}>● IN STOCK</span></div>
-            <div className="price-big">$78<span className="cents">.00</span></div>
+            <div className="price-big">₹1,999<span className="cents"></span></div>
             <div className="price-sub">
-              or $66.30 with <span className="save">subscribe &amp; save 15%</span>
+              or ₹1,799/mo with <span className="save">3-month plan — save 10%</span>
             </div>
             <div className="price-divider"></div>
             <div
@@ -1757,10 +1757,10 @@ function DeploySection({ onCheckout }) {
               onClick={() => setPlan('sub')}
             >
               <div>
-                <div className="pn">Subscribe — 30-day cycle <span className="save">SAVE 15%</span></div>
+                <div className="pn">Subscribe — 30-day cycle <span className="save">SAVE 10%</span></div>
                 <div className="ps mono">Auto-deploy · skip / cancel anytime</div>
               </div>
-              <div className="pp">$66.30</div>
+              <div className="pp">₹1,799/mo</div>
             </div>
             <div
               className={classify('plan', plan==='one' && 'sel')}
@@ -1770,7 +1770,7 @@ function DeploySection({ onCheckout }) {
                 <div className="pn">One-time — single bottle</div>
                 <div className="ps mono">Single deployment · no auto-renew</div>
               </div>
-              <div className="pp">$78.00</div>
+              <div className="pp">₹1,999</div>
             </div>
             <button className="btn btn-primary" style={{width:'100%', justifyContent:'center', marginTop:12}} onClick={onCheckout}>
               Confirm deployment <span className="arrow">→</span>
@@ -1778,7 +1778,7 @@ function DeploySection({ onCheckout }) {
             <div className="deploy-meta mono up">
               <div>SECURE CHECKOUT</div>
               <div>30-DAY GUARANTEE</div>
-              <div>FREE SHIPPING $75+</div>
+              <div>FREE SHIPPING ₹4K+</div>
             </div>
           </div>
         </div>
@@ -1849,17 +1849,17 @@ function CheckoutModal({ open, onClose }) {
               <p>One module · 60 capsules · 30 days.</p>
               <div className={classify('plan', plan==='sub' && 'sel')} onClick={() => setPlan('sub')}>
                 <div>
-                  <div className="pn">Subscribe · 30-day cycle <span className="save">SAVE 15%</span></div>
+                  <div className="pn">Subscribe · 30-day cycle <span className="save">SAVE 10%</span></div>
                   <div className="ps mono">Auto-deploy · skip / cancel anytime</div>
                 </div>
-                <div className="pp">$66.30</div>
+                <div className="pp">₹1,799/mo</div>
               </div>
               <div className={classify('plan', plan==='one' && 'sel')} onClick={() => setPlan('one')}>
                 <div>
                   <div className="pn">One-time · single bottle</div>
                   <div className="ps mono">Single deployment · no auto-renew</div>
                 </div>
-                <div className="pp">$78.00</div>
+                <div className="pp">₹1,999</div>
               </div>
               <div style={{marginTop:18}}>
                 <label className="mono">Email address</label>
@@ -1886,7 +1886,7 @@ function CheckoutModal({ open, onClose }) {
                 </div>
                 <div className="kv"><span className="k">Module</span><span className="v">MALE PERFORMANCE v1.0</span></div>
                 <div className="kv"><span className="k">Plan</span><span className="v">{plan === 'sub' ? '30-DAY · SUBSCRIBE' : 'ONE-TIME'}</span></div>
-                <div className="kv"><span className="k">Total</span><span className="v">${plan === 'sub' ? '66.30' : '78.00'}</span></div>
+                <div className="kv"><span className="k">Total</span><span className="v">{plan === 'sub' ? '₹1,799/mo' : '₹1,999'}</span></div>
               </div>
             </div>
             <div className="modal-foot">
