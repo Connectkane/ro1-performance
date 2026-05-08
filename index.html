@@ -773,6 +773,15 @@ section { border-bottom: 1px solid var(--hair); }
   .proto-time { padding-top: 0; }
   .proto-phases { grid-template-columns: 1fr 1fr; }
 }
+
+/* ---- Capsule header ---- */
+.cap-hd { display: flex; align-items: center; gap: 12px; padding: 14px 20px; background: var(--bg-alt); border-bottom: 1px solid var(--hair); flex-wrap: wrap; }
+.cap-hd-num { font-size: 14px; font-weight: 700; letter-spacing: -0.02em; }
+.cap-hd-type { font-family: 'JetBrains Mono', monospace; font-size: 11px; border: 1px solid var(--hair); padding: 3px 10px; border-radius: 2px; background: #fff; white-space: nowrap; }
+.cap-hd-focus { margin-left: auto; font-size: 12px; color: var(--slate-2); letter-spacing: 0.02em; }
+.ing-sub { display: block; font-size: 10px; color: var(--slate-2); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 3px; font-weight: 400; font-family: 'JetBrains Mono', monospace; }
+.dose-fill { color: var(--slate-2); font-style: italic; font-weight: 400; }
+@media (max-width: 560px) { .cap-hd-focus { display: none; } }
 </style>
 </head>
 <body>
@@ -1487,65 +1496,72 @@ function ProtocolSection() {
 
 // --- COMPOSITION ---
 function CompositionSection() {
-  const [open, setOpen] = useState(0);
+  const [open, setOpen] = useState(null);
+  const caps = [
+    {
+      id: 1, type: 'HPMC 000', focus: 'Hormone · Desire · Nitrate Oxide Pathway', total: '~1,095mg',
+      ings: [
+        { name: 'Shoden Ashwagandha', tm: '®', sub: 'ARJUNA NATURAL', fn: 'HPA axis — cortisol suppression, testosterone recovery', dose: '120mg' },
+        { name: 'Tongkat Ali', sub: 'STANDARDISED', fn: 'SHBG reduction, free testosterone, LH stimulation', dose: '300mg' },
+        { name: 'Mucuna Pruriens', sub: '40% L-DOPA', fn: 'Dopamine drive, prolactin suppression, desire', dose: '150mg' },
+        { name: 'Beetroot Extract', sub: '6% NITRATES', fn: 'Nitrate → NO direct pathway. Substrate bypass. Acute and cumulative vascular effect.', dose: '500mg' },
+        { name: 'Zinc Bisglycinate', fn: 'Testosterone synthesis cofactor', dose: '20mg' },
+        { name: 'BioPerine', tm: '®', sub: 'SABINSA', fn: 'Absorption enhancement', dose: '5mg' }
+      ]
+    },
+    {
+      id: 2, type: 'LFHC 000 · MCT Carrier', focus: 'eNOS · PDE5 · Energy · Psychology', total: '~810mg + MCT',
+      ings: [
+        { name: 'Pycnogenol', tm: '®', sub: 'HORPHAG', fn: 'eNOS activation — enzyme NO pathway. Endothelial healing over months.', dose: '200mg' },
+        { name: 'Icariin', sub: '40%', fn: 'PDE5 inhibition — NO signal preservation. Penile tissue health.', dose: '300mg' },
+        { name: 'Primavie Shilajit SD', tm: '®', sub: 'NATREON', fn: 'Mitochondrial biogenesis, cellular energy, free testosterone', dose: '250mg' },
+        { name: 'Saffron Extract', sub: '3%', fn: 'Psychological arousal, anxiety dissolution, mood', dose: '60mg' },
+        { name: 'Vitamin D3', fn: 'Steroidogenesis, endothelial function, systemic healing', dose: '3,000 IU' },
+        { name: 'MCT carrier', fn: 'Lipid carrier — fill to volume', dose: 'fill', fill: true }
+      ]
+    }
+  ];
   return (
     <section id="composition">
       <div className="page sec">
         <div className="sec-grid">
           <div>
-            <div className="sec-num mono">
-              <span>03</span><span className="lbl">The Formula</span>
-            </div>
-            <h2 className="sec-title">
-              Visible ingredients.<br/><span className="accent">Clinically dosed.</span>
-            </h2>
+            <div className="sec-num mono"><span>03</span><span className="lbl">The Formula</span></div>
+            <h2 className="sec-title">Two capsules.<br/><span className="accent">One protocol.</span></h2>
             <p className="sec-lede">
-              No proprietary blends. No hidden doses. No compromises. Each compound is stated at the exact amount research uses — and named by its authentic source form.
+              The formula is split across two size-000 capsules — a dry-blend HPMC and a lipid-filled LFHC carrier — so every active sits in the matrix it actually works in. No proprietary blends. No hidden doses.
             </p>
           </div>
           <div>
-            <div className="comp">
-              <div className="comp-head">
-                <span></span>
-                <span>Ingredient</span>
-                <span>Function</span>
-                <span style={{textAlign:'right'}}>Dose</span>
+            {caps.map((cap) => (
+              <div className="comp" key={cap.id} style={cap.id===2?{marginTop:32}:{}}>
+                <div className="cap-hd">
+                  <span className="cap-hd-num">CAP {cap.id}</span>
+                  <span className="cap-hd-type">{cap.type}</span>
+                  <span className="cap-hd-focus">{cap.focus}</span>
+                </div>
+                <div className="comp-head">
+                  <span></span><span>Ingredient</span><span>Function</span><span style={{textAlign:'right'}}>Dose</span>
+                </div>
+                <div className="comp-grid">
+                  {cap.ings.map((ing, i) => (
+                    <div className="comp-row" key={i}>
+                      <span className="idx mono">0{i+1}</span>
+                      <span className="ing">
+                        {ing.name}{ing.tm && <sup>{ing.tm}</sup>}
+                        {ing.sub && <small className="ing-sub">{ing.sub}</small>}
+                      </span>
+                      <span className="fn">{ing.fn}</span>
+                      <span className={`dose${ing.fill?' dose-fill':''}`}>{ing.dose}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="comp-microcopy mono">
+                  <span>TOTAL — {cap.total}</span>
+                  <span>SIZE 000 ✓</span>
+                </div>
               </div>
-              <div className="comp-grid">
-                {DATA.ingredients.map((ing, i) => (
-                  <div
-                    className="comp-row"
-                    key={i}
-                    onClick={() => setOpen(open === i ? -1 : i)}
-                  >
-                    <span className="idx">0{i+1}</span>
-                    <span className="ing">{ing.name}<sup>{ing.tm}</sup></span>
-                    <span className="fn">{ing.fn}</span>
-                    <span className="dose">{ing.dose}</span>
-                    {open === i && (
-                      <div className="comp-detail">
-                        <div>
-                          <strong>What it does</strong>
-                          {ing.what}
-                        </div>
-                        <div>
-                          <strong>Evidence</strong>
-                          {ing.study}
-                          <div className="ref">{ing.ref}</div>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-              <div className="comp-microcopy mono">
-                <span>PER SERVING — 2 CAPSULES</span>
-                <span>TOTAL ACTIVE — 474MG</span>
-              </div>
-            </div>
-            <p style={{fontSize:12, color:'var(--slate-2)', marginTop:14, letterSpacing:'0.04em'}}>
-              Dosages calibrated at clinically effective thresholds.
-            </p>
+            ))}
           </div>
         </div>
       </div>
