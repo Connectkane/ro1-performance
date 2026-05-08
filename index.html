@@ -21,6 +21,9 @@
   --status: #22CC71;
   --pad: clamp(20px, 4vw, 56px);
 }
+@media (max-width: 560px) {
+  :root { --pad: 20px; }
+}
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body {
   background: var(--bg);
@@ -628,7 +631,7 @@ section { border-bottom: 1px solid var(--hair); }
   .sec-lede { font-size: 14px; max-width: 100%; margin-top: 12px; line-height: 1.6; }
 
   /* SCIENCE */
-  .diagram { display: none; }
+  .diagram { display: none !important; }
   .science-points { margin-top: 0; grid-template-columns: 1fr; gap: 0; }
   .science-point { padding: 18px 0; border-bottom: 1px solid var(--hair-2); }
   .science-point:last-child { border-bottom: none; padding-bottom: 0; }
